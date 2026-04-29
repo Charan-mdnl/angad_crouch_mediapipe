@@ -1,0 +1,408 @@
+<?xml version="1.0" ?>
+<robot name="lower_body" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <material name="silver">
+    <color rgba="0.700 0.700 0.700 1.000"/>
+  </material>
+
+  <xacro:property name="pkg_path" value="/home/manoja/msp2/lower_body" />
+  <xacro:include filename="${pkg_path}/urdf/lower_body.ros2_control.xacro" />
+
+  <link name="world"/>
+
+  <joint name="fixed" type="fixed">
+    <parent link="world"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 1.0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0.002978049443025171 3.331729238924102e-05 0.8249140352934465" rpy="0 0 0"/>
+      <mass value="5.565"/>
+      <inertia ixx="0.0272538" iyy="0.0301722" izz="0.0318504" ixy="0" iyz="-6.3931e-06" ixz="-8.63068e-05"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://${pkg_path}/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://${pkg_path}/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Left Leg -->
+  <link name="hip_L_1">
+    <inertial>
+      <origin xyz="0.03854907436256218 -0.00377537649362079 -0.014028849509831631" rpy="0 0 0"/>
+      <mass value="1.008"/>
+      <inertia ixx="0.00115998" iyy="0.00157855" izz="0.00190361" ixy="0.000204833" iyz="-7.34726e-05" ixz="0.000311702"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.06406 -0.0 -0.80394" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://${pkg_path}/meshes/hip_L_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.06406 -0.0 -0.80394" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://${pkg_path}/meshes/hip_L_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="hip_pitch_l" type="revolute">
+    <origin xyz="0.06406 0.0 0.80394" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="hip_L_1"/>
+    <axis xyz="-0.939693 0.0 0.34202"/>
+    <limit effort="100.0" velocity="5.0" lower="-1.57" upper="1.57"/>
+    <dynamics damping="0.1" friction="0.0"/>
+  </joint>
+
+  <link name="thigh_L_1">
+    <inertial>
+      <origin xyz="-1.40174504655588e-05 -0.030115272344603504 -0.08645138758904114" rpy="0 0 0"/>
+      <mass value="1.319"/>
+      <inertia ixx="0.00664321" iyy="0.00731815" izz="0.00393772" ixy="8.98835e-06" iyz="0.000276188" ixz="1.22568e-05"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.13829 -0.0315 -0.776903" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://${pkg_path}/meshes/thigh_L_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.13829 -0.0315 -0.776903" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://${pkg_path}/meshes/thigh_L_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="thigh_roll_l" type="revolute">
+    <origin xyz="0.07423 0.0315 -0.027037" rpy="0 0 0"/>
+    <parent link="hip_L_1"/>
+    <child link="thigh_L_1"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    <limit effort="100.0" velocity="5.0" lower="-0.5" upper="0.5"/>
+    <dynamics damping="0.1" friction="0.0"/>
+  </joint>
+
+  <link name="upper_knee_L_1">
+    <inertial>
+      <origin xyz="-0.0013353106898234268 -0.005517962362791416 -0.11408271066504616" rpy="0 0 0"/>
+      <mass value="2.264"/>
+      <inertia ixx="0.0219197" iyy="0.0193774" izz="0.00704322" ixy="2.59696e-05" iyz="-0.000436015" ixz="-0.000475653"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.138295 -0.005168 -0.620317" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://${pkg_path}/meshes/upper_knee_L_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.138295 -0.005168 -0.620317" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://${pkg_path}/meshes/upper_knee_L_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="thigh_yaw_l" type="revolute">
+    <origin xyz="5e-06 -0.026332 -0.156586" rpy="0 0 0"/>
+    <parent link="thigh_L_1"/>
+    <child link="upper_knee_L_1"/>
+    <axis xyz="0.0 0.0 -1.0"/>
+    <limit effort="100.0" velocity="5.0" lower="-0.5" upper="0.5"/>
+    <dynamics damping="0.1" friction="0.0"/>
+  </joint>
+
+  <link name="lower_knee_L_1">
+    <inertial>
+      <origin xyz="-0.026381467582163642 0.002587818636810185 -0.14748715164304727" rpy="0 0 0"/>
+      <mass value="1.446"/>
+      <inertia ixx="0.0179909" iyy="0.0174857" izz="0.00337026" ixy="1.2e-05" iyz="0.00187816" ixz="-4.22513e-05"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.165295 -0.005033 -0.410617" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://${pkg_path}/meshes/lower_knee_L_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.165295 -0.005033 -0.410617" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://${pkg_path}/meshes/lower_knee_L_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="knee_pitch_l" type="revolute">
+    <origin xyz="0.027 -0.000135 -0.2097" rpy="0 0 0"/>
+    <parent link="upper_knee_L_1"/>
+    <child link="lower_knee_L_1"/>
+    <axis xyz="1.0 0.0 0.0"/>
+    <limit effort="100.0" velocity="5.0" lower="-2.0" upper="2.0"/>
+    <dynamics damping="0.1" friction="0.0"/>
+  </joint>
+
+  <link name="ankle_L_1">
+    <inertial>
+      <origin xyz="-0.029486478549063777 0.001377277986068716 4.950374079513986e-06" rpy="0 0 0"/>
+      <mass value="0.10759548262439121"/>
+      <inertia ixx="1.6e-05" iyy="3.8e-05" izz="5.1e-05" ixy="-0.0" iyz="-0.0" ixz="-0.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.169321 -0.030731 -0.047638" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://${pkg_path}/meshes/ankle_L_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.169321 -0.030731 -0.047638" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://${pkg_path}/meshes/ankle_L_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="ankle_pitch_l" type="revolute">
+    <origin xyz="0.004026 0.025698 -0.362979" rpy="0 0 0"/>
+    <parent link="lower_knee_L_1"/>
+    <child link="ankle_L_1"/>
+    <axis xyz="1.0 0.0 0.0"/>
+    <limit effort="100.0" velocity="5.0" lower="-1.0" upper="1.0"/>
+    <dynamics damping="0.1" friction="0.0"/>
+  </joint>
+
+  <link name="feet_L_1">
+    <inertial>
+      <origin xyz="1.4590627572308446e-05 -0.030224126757618437 -0.025368031084606422" rpy="0 0 0"/>
+      <mass value="0.365"/>
+      <inertia ixx="0.000967774" iyy="0.000266357" izz="0.0010612" ixy="2.4e-05" iyz="1.60238e-05" ixz="-0"/>
+    </inertial>
+    <visual>
+      <origin xyz="-0.141356 -0.069456 -0.047775" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://${pkg_path}/meshes/feet_L_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.141356 -0.069456 -0.047775" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://${pkg_path}/meshes/feet_L_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="ankle_roll_l" type="revolute">
+    <origin xyz="-0.027965 0.038725 0.000137" rpy="0 0 0"/>
+    <parent link="ankle_L_1"/>
+    <child link="feet_L_1"/>
+    <axis xyz="0.0 -1.0 0.0"/>
+    <limit effort="100.0" velocity="5.0" lower="-0.5" upper="0.5"/>
+    <dynamics damping="0.1" friction="0.0"/>
+  </joint>
+
+  <!-- Right Leg -->
+  <link name="hip_R_1">
+    <inertial>
+      <origin xyz="-0.038552261262815704 -0.003775357521075904 -0.014020100360895404" rpy="0 0 0"/>
+      <mass value="1.008"/>
+      <inertia ixx="0.00115998" iyy="0.00157855" izz="0.00190361" ixy="-0.000204833" iyz="-7.34726e-05" ixz="-0.000311702"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.06406 -0.0 -0.80394" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://${pkg_path}/meshes/hip_R_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="0.06406 -0.0 -0.80394" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://${pkg_path}/meshes/hip_R_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="hip_pitch_r" type="revolute">
+    <origin xyz="-0.06406 0.0 0.80394" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="hip_R_1"/>
+    <axis xyz="0.939693 0.0 0.34202"/>
+    <limit effort="100.0" velocity="5.0" lower="-1.57" upper="1.57"/>
+    <dynamics damping="0.1" friction="0.0"/>
+  </joint>
+
+  <link name="thigh_R_1">
+    <inertial>
+      <origin xyz="-0.0020791884572767816 -0.030383815559322697 -0.0863687783674898" rpy="0 0 0"/>
+      <mass value="1.319"/>
+      <inertia ixx="0.00664117" iyy="0.00719671" izz="0.00381943" ixy="1.14208e-05" iyz="0.000270019" ixz="-7.17876e-05"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.138263 -0.0315 -0.77683" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://${pkg_path}/meshes/thigh_R_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="0.138263 -0.0315 -0.77683" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://${pkg_path}/meshes/thigh_R_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="thigh_roll_r" type="revolute">
+    <origin xyz="-0.074203 0.0315 -0.02711" rpy="0 0 0"/>
+    <parent link="hip_R_1"/>
+    <child link="thigh_R_1"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    <limit effort="100.0" velocity="5.0" lower="-0.5" upper="0.5"/>
+    <dynamics damping="0.1" friction="0.0"/>
+  </joint>
+
+  <link name="upper_knee_R_1">
+    <inertial>
+      <origin xyz="-0.0007904776210841402 -0.005611532850717232 -1.1408357177758233e-01" rpy="0 0 0"/>
+      <mass value="2.264"/>
+      <inertia ixx="0.0219137" iyy="0.0193988" izz="0.00702938" ixy="0.00022962" iyz="-0.000418237" ixz="0.000168115"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.141977 -0.004808 -0.620349" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://${pkg_path}/meshes/upper_knee_R_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="0.141977 -0.004808 -0.620349" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://${pkg_path}/meshes/upper_knee_R_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="thigh_yaw_r" type="revolute">
+    <origin xyz="-0.003714 -0.026692 -0.156481" rpy="0 0 0"/>
+    <parent link="thigh_R_1"/>
+    <child link="upper_knee_R_1"/>
+    <axis xyz="0.0 0.0 -1.0"/>
+    <limit effort="100.0" velocity="5.0" lower="-0.5" upper="0.5"/>
+    <dynamics damping="0.1" friction="0.0"/>
+  </joint>
+
+  <link name="lower_knee_R_1">
+    <inertial>
+      <origin xyz="0.02249291366303005 0.004807172510886975 -0.14807185562679898" rpy="0 0 0"/>
+      <mass value="1.446"/>
+      <inertia ixx="0.0179724" iyy="0.0175592" izz="0.00343161" ixy="7.69783e-05" iyz="0.00182317" ixz="-0.000495439"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.172267 -0.001544 -0.411313" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://${pkg_path}/meshes/lower_knee_R_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="0.172267 -0.001544 -0.411313" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://${pkg_path}/meshes/lower_knee_R_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="knee_pitch_r" type="revolute">
+    <origin xyz="-0.03029 -0.003264 -0.209036" rpy="0 0 0"/>
+    <parent link="upper_knee_R_1"/>
+    <child link="lower_knee_R_1"/>
+    <axis xyz="1.0 0.0 0.0"/>
+    <limit effort="100.0" velocity="5.0" lower="-2.0" upper="2.0"/>
+    <dynamics damping="0.1" friction="0.0"/>
+  </joint>
+
+  <link name="ankle_R_1">
+    <inertial>
+      <origin xyz="0.029175110656741804 0.004434380289984066 -0.0006992377379477013" rpy="0 0 0"/>
+      <mass value="0.1075954826243918"/>
+      <inertia ixx="1.6e-05" iyy="3.8e-05" izz="5.1e-05" ixy="-2e-06" iyz="0.0" ixz="1e-06"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.187464 -0.025444 -0.048506" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://${pkg_path}/meshes/ankle_R_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="0.187464 -0.025444 -0.048506" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://${pkg_path}/meshes/ankle_R_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="ankle_pitch_r" type="revolute">
+    <origin xyz="-0.015197 0.0239 -0.362807" rpy="0 0 0"/>
+    <parent link="lower_knee_R_1"/>
+    <child link="ankle_R_1"/>
+    <axis xyz="1.0 0.0 0.0"/>
+    <limit effort="100.0" velocity="5.0" lower="-1.0" upper="1.0"/>
+    <dynamics damping="0.1" friction="0.0"/>
+  </joint>
+
+  <link name="feet_R_1">
+    <inertial>
+      <origin xyz="0.0026047017550297202 -0.030217438377113798 -0.025242270995119415" rpy="0 0 0"/>
+      <mass value="0.365"/>
+      <inertia ixx="0.000958402" iyy="0.000276032" izz="0.00106089" ixy="8.13281e-05" iyz="1.90471e-05" ixz="0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.163716 -0.067164 -0.047827" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://${pkg_path}/meshes/feet_R_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="silver"/>
+    </visual>
+    <collision>
+      <origin xyz="0.163716 -0.067164 -0.047827" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file://${pkg_path}/meshes/feet_R_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="ankle_roll_r" type="revolute">
+    <origin xyz="0.023748 0.04172 -0.000679" rpy="0 0 0"/>
+    <parent link="ankle_R_1"/>
+    <child link="feet_R_1"/>
+    <axis xyz="0.0 -1.0 0.0"/>
+    <limit effort="100.0" velocity="5.0" lower="-0.5" upper="0.5"/>
+    <dynamics damping="0.1" friction="0.0"/>
+  </joint>
+
+  <gazebo>
+    <plugin filename="libgz_ros2_control-system.so" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+      <parameters>${pkg_path}/config/ros2_controllers.yaml</parameters>
+    </plugin>
+  </gazebo>
+
+</robot>

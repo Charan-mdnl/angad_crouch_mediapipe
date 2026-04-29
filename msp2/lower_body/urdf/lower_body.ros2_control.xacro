@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <ros2_control name="LowerBodyGazeboSystem" type="system">
+    <hardware>
+      <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+    </hardware>
+
+    <xacro:macro name="configure_joint" params="joint_name">
+      <joint name="${joint_name}">
+        <command_interface name="position">
+          <param name="min">-3.14</param>
+          <param name="max">3.14</param>
+        </command_interface>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+      </joint>
+    </xacro:macro>
+
+    <!-- Leg Joints -->
+    <xacro:configure_joint joint_name="hip_pitch_l"/>
+    <xacro:configure_joint joint_name="hip_pitch_r"/>
+    <xacro:configure_joint joint_name="thigh_roll_l"/>
+    <xacro:configure_joint joint_name="thigh_roll_r"/>
+    <xacro:configure_joint joint_name="thigh_yaw_l"/>
+    <xacro:configure_joint joint_name="thigh_yaw_r"/>
+    <xacro:configure_joint joint_name="knee_pitch_l"/>
+    <xacro:configure_joint joint_name="knee_pitch_r"/>
+    <xacro:configure_joint joint_name="ankle_pitch_l"/>
+    <xacro:configure_joint joint_name="ankle_pitch_r"/>
+    <xacro:configure_joint joint_name="ankle_roll_l"/>
+    <xacro:configure_joint joint_name="ankle_roll_r"/>
+
+  </ros2_control>
+
+</robot>

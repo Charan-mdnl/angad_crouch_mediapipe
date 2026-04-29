@@ -1,0 +1,741 @@
+<?xml version="1.0"?>
+<robot name="Angad_Full_Assembly" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find Angad_Full_Assembly_description)/urdf/materials.xacro" />
+  <!-- <xacro:include filename="$(find
+  Angad_Full_Assembly_description)/urdf/Angad_Full_Assembly.trans" /> -->
+  <xacro:include filename="$(find Angad_Full_Assembly_description)/urdf/Angad_Full_Assembly.gazebo" />
+  <xacro:include
+    filename="$(find Angad_Full_Assembly_description)/urdf/Angad_Full_Assembly.ros2_control.xacro" />
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0.002978049443025171 3.331729238924102e-05 0.8249140352934465" rpy="0 0 0" />
+      <mass value="5.565" />
+      <inertia ixx="0.0272538" iyy="0.0301722" izz="0.0318504" ixy="0" iyz="-6.3931e-06"
+        ixz="-8.63068e-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find Angad_Full_Assembly_description)/meshes/base_link.stl"
+          scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.174 0.13 0.213089" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="hip_L_1">
+    <inertial>
+      <origin xyz="0.03854907436256218 -0.00377537649362079 -0.014028849509831631" rpy="0 0 0" />
+      <mass value="1.008" />
+      <inertia ixx="0.00115998" iyy="0.00157855" izz="0.00190361" ixy="0.000204833"
+        iyz="-7.34726e-05" ixz="0.000311702" />
+    </inertial>
+    <visual>
+      <origin xyz="-0.06406 -0.0 -0.80394" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find Angad_Full_Assembly_description)/meshes/hip_L_1.stl"
+          scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="-0.06406 -0.0 -0.80394" rpy="0 0 0" />
+      <geometry>
+        <box size="0.130905 0.0571 0.112" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="hip_R_1">
+    <inertial>
+      <origin xyz="-0.038552261262815704 -0.003775357521075904 -0.014020100360895404" rpy="0 0 0" />
+      <mass value="1.008" />
+      <inertia ixx="0.00115998" iyy="0.00157855" izz="0.00190361" ixy="-0.000204833"
+        iyz="-7.34726e-05" ixz="-0.000311702" />
+    </inertial>
+    <visual>
+      <origin xyz="0.06406 -0.0 -0.80394" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find Angad_Full_Assembly_description)/meshes/hip_R_1.stl"
+          scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="0.06406 -0.0 -0.80394" rpy="0 0 0" />
+      <geometry>
+        <box size="0.130905 0.0571 0.112" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="thigh_L_1">
+    <inertial>
+      <origin xyz="-1.40174504655588e-05 -0.030115272344603504 -0.08645138758904114" rpy="0 0 0" />
+      <mass value="1.319" />
+      <inertia ixx="0.00664321" iyy="0.00731815" izz="0.00393772" ixy="8.98835e-06"
+        iyz="0.000276188" ixz="1.22568e-05" />
+    </inertial>
+    <visual>
+      <origin xyz="-0.13829 -0.0315 -0.776903" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find Angad_Full_Assembly_description)/meshes/thigh_L_1.stl"
+          scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="-0.13829 -0.0315 -0.776903" rpy="0 0 0" />
+      <geometry>
+        <box size="0.11 0.112741 0.175" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="thigh_R_1">
+    <inertial>
+      <origin xyz="-0.0020791884572767816 -0.030383815559322697 -0.0863687783674898" rpy="0 0 0" />
+      <mass value="1.319" />
+      <inertia ixx="0.00664117" iyy="0.00719671" izz="0.00381943" ixy="1.14208e-05"
+        iyz="0.000270019" ixz="-7.17876e-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0.138263 -0.0315 -0.77683" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find Angad_Full_Assembly_description)/meshes/thigh_R_1.stl"
+          scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="0.138263 -0.0315 -0.77683" rpy="0 0 0" />
+      <geometry>
+        <box size="0.11 0.112741 0.175" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="upper_knee_L_1">
+    <inertial>
+      <origin xyz="-0.0013353106898234268 -0.005517962362791416 -0.11408271066504616" rpy="0 0 0" />
+      <mass value="2.264" />
+      <inertia ixx="0.0219197" iyy="0.0193774" izz="0.00704322" ixy="2.59696e-05" iyz="-0.000436015"
+        ixz="-0.000475653" />
+    </inertial>
+    <visual>
+      <origin xyz="-0.138295 -0.005168 -0.620317" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find Angad_Full_Assembly_description)/meshes/upper_knee_L_1.stl"
+          scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="-0.138295 -0.005168 -0.620317" rpy="0 0 0" />
+      <geometry>
+        <box size="0.0625 0.125 0.3125" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="upper_knee_R_1">
+    <inertial>
+      <origin xyz="-0.0007904776210841402 -0.005611532850717232 -0.11408357177758233" rpy="0 0 0" />
+      <mass value="2.264" />
+      <inertia ixx="0.0219137" iyy="0.0193988" izz="0.00702938" ixy="0.00022962" iyz="-0.000418237"
+        ixz="0.000168115" />
+    </inertial>
+    <visual>
+      <origin xyz="0.141977 -0.004808 -0.620349" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find Angad_Full_Assembly_description)/meshes/upper_knee_R_1.stl"
+          scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="0.141977 -0.004808 -0.620349" rpy="0 0 0" />
+      <geometry>
+        <box size="0.0625 0.125 0.3125" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="lower_knee_L_1">
+    <inertial>
+      <origin xyz="-0.026381467582163642 0.002587818636810185 -0.14748715164304727" rpy="0 0 0" />
+      <mass value="1.446" />
+      <inertia ixx="0.0179909" iyy="0.0174857" izz="0.00337026" ixy="1.2e-05" iyz="0.00187816"
+        ixz="-4.22513e-05" />
+    </inertial>
+    <visual>
+      <origin xyz="-0.165295 -0.005033 -0.410617" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find Angad_Full_Assembly_description)/meshes/lower_knee_L_1.stl"
+          scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="-0.165295 -0.005033 -0.410617" rpy="0 0 0" />
+      <geometry>
+        <box size="0.087 0.052557 0.388142" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="lower_knee_R_1">
+    <inertial>
+      <origin xyz="0.02249291366303005 0.004807172510886975 -0.14807185562679898" rpy="0 0 0" />
+      <mass value="1.446" />
+      <inertia ixx="0.0179724" iyy="0.0175592" izz="0.00343161" ixy="0.000133" iyz="0.00182317"
+        ixz="-0.000495439" />
+    </inertial>
+    <visual>
+      <origin xyz="0.172267 -0.001544 -0.411313" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find Angad_Full_Assembly_description)/meshes/lower_knee_R_1.stl"
+          scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="0.172267 -0.001544 -0.411313" rpy="0 0 0" />
+      <geometry>
+        <box size="0.087 0.052557 0.388142" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="ankle_L_1">
+    <inertial>
+      <origin xyz="-0.029486478549063777 0.001377277986068716 4.950374079513986e-06" rpy="0 0 0" />
+      <mass value="0.10759548262439121" />
+      <inertia ixx="1.6e-05" iyy="3.8e-05" izz="5.1e-05" ixy="-0.0" iyz="-0.0" ixz="-0.0" />
+    </inertial>
+    <visual>
+      <origin xyz="-0.169321 -0.030731 -0.047638" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find Angad_Full_Assembly_description)/meshes/ankle_L_1.stl"
+          scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="-0.169321 -0.030731 -0.047638" rpy="0 0 0" />
+      <geometry>
+        <box size="0.087 0.052557 0.388142" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="ankle_R_1">
+    <inertial>
+      <origin xyz="0.029175110656741804 0.004434380289984066 -0.0006992377379477013" rpy="0 0 0" />
+      <mass value="0.1075954826243918" />
+      <inertia ixx="1.6e-05" iyy="3.8e-05" izz="5.1e-05" ixy="-2e-06" iyz="0.0" ixz="1e-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0.187464 -0.025444 -0.048506" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find Angad_Full_Assembly_description)/meshes/ankle_R_1.stl"
+          scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="0.187464 -0.025444 -0.048506" rpy="0 0 0" />
+      <geometry>
+        <box size="0.087 0.052557 0.388142" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="feet_L_1">
+    <inertial>
+      <origin xyz="1.4590627572308446e-05 -0.030224126757618437 -0.025368031084606422" rpy="0 0 0" />
+      <mass value="0.365" />
+      <inertia ixx="0.000967774" iyy="0.000266357" izz="0.0010612" ixy="2.4e-05" iyz="1.60238e-05"
+        ixz="-0" />
+    </inertial>
+    <visual>
+      <origin xyz="-0.141356 -0.069456 -0.047775" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find Angad_Full_Assembly_description)/meshes/feet_L_1.stl"
+          scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="-0.141356 -0.069456 -0.047775" rpy="0 0 0" />
+      <geometry>
+        <box size="0.08 0.15 0.056" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="feet_R_1">
+    <inertial>
+      <origin xyz="0.0026047017550297202 -0.030217438377113798 -0.025242270995119415" rpy="0 0 0" />
+      <mass value="0.365" />
+      <inertia ixx="0.000958402" iyy="0.000276032" izz="0.00106089" ixy="8.13281e-05"
+        iyz="1.90471e-05" ixz="0" />
+    </inertial>
+    <visual>
+      <origin xyz="0.163716 -0.067164 -0.047827" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find Angad_Full_Assembly_description)/meshes/feet_R_1.stl"
+          scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="0.163716 -0.067164 -0.047827" rpy="0 0 0" />
+      <geometry>
+        <box size="0.08 0.15 0.056" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="Torso_1">
+    <inertial>
+      <origin xyz="0.0012771309079774086 -0.001683956790175145 0.23828496110377373" rpy="0 0 0" />
+      <mass value="4.529" />
+      <inertia ixx="0.0917624" iyy="0.122035" izz="0.0641058" ixy="-0.000780409" iyz="0.000501789"
+        ixz="0.000264244" />
+    </inertial>
+    <visual>
+      <origin xyz="0.0 -0.0 -0.883471" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find Angad_Full_Assembly_description)/meshes/Torso_1.stl"
+          scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="0.0 -0.0 -0.883471" rpy="0 0 0" />
+      <geometry>
+        <box size="0.328659 0.189623 0.416284" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="wrist_L_1">
+    <inertial>
+      <origin xyz="-0.014597822663228288 -0.00032820857286989906 -0.04785735645922662" rpy="0 0 0" />
+      <mass value="0.37" />
+      <inertia ixx="0.00178209" iyy="0.00196071" izz="0.00063898" ixy="-1.5e-05" iyz="1.7627e-06"
+        ixz="0.000172451" />
+    </inertial>
+    <visual>
+      <origin xyz="-0.284491 -0.011757 -0.976612" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find Angad_Full_Assembly_description)/meshes/wrist_L_1.stl"
+          scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="-0.284491 -0.011757 -0.976612" rpy="0 0 0" />
+      <geometry>
+        <box size="0.07 0.08 0.192" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="wrist_R_1">
+    <inertial>
+      <origin xyz="0.018339170582659936 0.0013563551687613635 -0.04850994481380699" rpy="0 0 0" />
+      <mass value="0.37" />
+      <inertia ixx="0.00176154" iyy="0.00195926" izz="0.000663075" ixy="-7.5e-05" iyz="-3.96611e-05"
+        ixz="-0.000232091" />
+    </inertial>
+    <visual>
+      <origin xyz="0.284622 0.004379 -0.976602" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find Angad_Full_Assembly_description)/meshes/wrist_R_1.stl"
+          scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="0.284622 0.004379 -0.976602" rpy="0 0 0" />
+      <geometry>
+        <box size="0.07 0.08 0.192" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="shoulder_pitch_L_1">
+    <inertial>
+      <origin xyz="0.07268848630879282 0.00183776562654197 -3.7835069854885717e-07" rpy="0 0 0" />
+      <mass value="0.929" />
+      <inertia ixx="0.000771942" iyy="0.00141377" izz="0.000904634" ixy="-1.61427e-05" iyz="-0.0"
+        ixz="-0.0" />
+    </inertial>
+    <visual>
+      <origin xyz="-0.142972 -0.003567 -1.207974" rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find Angad_Full_Assembly_description)/meshes/shoulder_pitch_L_1.stl"
+          scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="-0.142972 -0.003567 -1.207974" rpy="0 0 0" />
+      <geometry>
+        <box size="0.1285 0.0746 0.106" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="shoulder_roll_L_1">
+    <inertial>
+      <origin xyz="0.006820681072588153 0.022543983036535473 -0.04196050745358937" rpy="0 0 0" />
+      <mass value="0.64" />
+      <inertia ixx="0.0025085" iyy="0.00218566" izz="0.00133528" ixy="-1.06618e-06"
+        iyz="5.73603e-05" ixz="0.000212809" />
+    </inertial>
+    <visual>
+      <origin xyz="-0.218947 0.014269 -1.207974" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find Angad_Full_Assembly_description)/meshes/shoulder_roll_L_1.stl"
+          scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="-0.218947 0.014269 -1.207974" rpy="0 0 0" />
+      <geometry>
+        <box size="0.0785 0.0905 0.134" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="bicep_L_1">
+    <inertial>
+      <origin xyz="0.007274821132527365 0.002336663250654977 -0.04402890372206425" rpy="0 0 0" />
+      <mass value="0.648" />
+      <inertia ixx="0.00326608" iyy="0.0030984" izz="0.00204111" ixy="2.22586e-06" iyz="2.52264e-05"
+        ixz="0.000230748" />
+    </inertial>
+    <visual>
+      <origin xyz="-0.237141 -0.010449 -1.101281" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find Angad_Full_Assembly_description)/meshes/bicep_L_1.stl"
+          scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="-0.237141 -0.010449 -1.101281" rpy="0 0 0" />
+      <geometry>
+        <box size="0.067 0.08 0.171" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="shoulder_pitch_R_1">
+    <inertial>
+      <origin xyz="-0.07268831266820741 -0.0018371985546969628 -3.7835063526614476e-07" rpy="0 0 0" />
+      <mass value="0.929" />
+      <inertia ixx="0.000771942" iyy="0.00141377" izz="0.000904634" ixy="-1.61427e-05" iyz="0.0"
+        ixz="0.0" />
+    </inertial>
+    <visual>
+      <origin xyz="0.142971 0.003614 -1.207974" rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file://$(find Angad_Full_Assembly_description)/meshes/shoulder_pitch_R_1.stl"
+          scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="0.142971 0.003614 -1.207974" rpy="0 0 0" />
+      <geometry>
+        <box size="0.1285 0.0746 0.106" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="shoulder_roll_R_1">
+    <inertial>
+      <origin xyz="-0.00797108983942904 0.022169593166912808 -0.041956895738376465" rpy="0 0 0" />
+      <mass value="0.64" />
+      <inertia ixx="0.00250786" iyy="0.00218651" izz="0.00133485" ixy="1.72721e-05"
+        iyz="4.66985e-05" ixz="-0.000214088" />
+    </inertial>
+    <visual>
+      <origin xyz="0.217948 0.025265 -1.207974" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find Angad_Full_Assembly_description)/meshes/shoulder_roll_R_1.stl"
+          scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="0.217948 0.025265 -1.207974" rpy="0 0 0" />
+      <geometry>
+        <box size="0.0785 0.0905 0.134" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="bicep_R_1">
+    <inertial>
+      <origin xyz="-0.008355433029998388 0.0019109890257454605 -0.043859757836306246" rpy="0 0 0" />
+      <mass value="0.648" />
+      <inertia ixx="0.00326975" iyy="0.00309762" izz="0.00203293" ixy="2.22584e-05"
+        iyz="1.18711e-05" ixz="-0.000218874" />
+    </inertial>
+    <visual>
+      <origin xyz="0.237367 0.001498 -1.101281" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="file://$(find Angad_Full_Assembly_description)/meshes/bicep_R_1.stl"
+          scale="0.001 0.001 0.001" />
+      </geometry>
+      <material name="silver" />
+    </visual>
+    <collision>
+      <origin xyz="0.237367 0.001498 -1.101281" rpy="0 0 0" />
+      <geometry>
+        <box size="0.067 0.08 0.171" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="hip_pitch_l" type="revolute">
+    <origin xyz="0.06406 0.0 0.80394" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="hip_L_1" />
+    <axis xyz="-0.939693 0.0 0.34202" />
+    <limit effort="100.0" velocity="5.0" lower="-1.57" upper="1.57" />
+    <dynamics damping="0.1" friction="0.0" />
+  </joint>
+
+  <joint name="hip_pitch_r" type="revolute">
+    <origin xyz="-0.06406 0.0 0.80394" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="hip_R_1" />
+    <axis xyz="0.939693 0.0 0.34202" />
+    <limit effort="100.0" velocity="5.0" lower="-1.57" upper="1.57" />
+    <dynamics damping="0.1" friction="0.0" />
+  </joint>
+
+  <joint name="thigh_roll_l" type="revolute">
+    <origin xyz="0.07423 0.0315 -0.027037" rpy="0 0 0" />
+    <parent link="hip_L_1" />
+    <child link="thigh_L_1" />
+    <axis xyz="0.0 1.0 0.0" />
+    <limit effort="100.0" velocity="5.0" lower="-0.5" upper="0.5" />
+    <dynamics damping="0.1" friction="0.0" />
+  </joint>
+
+  <joint name="thigh_roll_r" type="revolute">
+    <origin xyz="-0.074203 0.0315 -0.02711" rpy="0 0 0" />
+    <parent link="hip_R_1" />
+    <child link="thigh_R_1" />
+    <axis xyz="0.0 1.0 0.0" />
+    <limit effort="100.0" velocity="5.0" lower="-0.5" upper="0.5" />
+    <dynamics damping="0.1" friction="0.0" />
+  </joint>
+
+  <joint name="thigh_yaw_l" type="revolute">
+    <origin xyz="5e-06 -0.026332 -0.156586" rpy="0 0 0" />
+    <parent link="thigh_L_1" />
+    <child link="upper_knee_L_1" />
+    <axis xyz="0.0 0.0 -1.0" />
+    <limit effort="100.0" velocity="5.0" lower="-0.5" upper="0.5" />
+    <dynamics damping="0.1" friction="0.0" />
+  </joint>
+
+  <joint name="thigh_yaw_r" type="revolute">
+    <origin xyz="-0.003714 -0.026692 -0.156481" rpy="0 0 0" />
+    <parent link="thigh_R_1" />
+    <child link="upper_knee_R_1" />
+    <axis xyz="0.0 0.0 -1.0" />
+    <limit effort="100.0" velocity="5.0" lower="-0.5" upper="0.5" />
+    <dynamics damping="0.1" friction="0.0" />
+  </joint>
+
+  <joint name="knee_pitch_l" type="revolute">
+    <origin xyz="0.027 -0.000135 -0.2097" rpy="0 0 0" />
+    <parent link="upper_knee_L_1" />
+    <child link="lower_knee_L_1" />
+    <axis xyz="1.0 0.0 0.0" />
+    <limit effort="100.0" velocity="5.0" lower="-2.0" upper="2.0" />
+    <dynamics damping="0.1" friction="0.0" />
+  </joint>
+
+  <joint name="knee_pitch_r" type="revolute">
+    <origin xyz="-0.03029 -0.003264 -0.209036" rpy="0 0 0" />
+    <parent link="upper_knee_R_1" />
+    <child link="lower_knee_R_1" />
+    <axis xyz="1.0 0.0 0.0" />
+    <limit effort="100.0" velocity="5.0" lower="-2.0" upper="2.0" />
+    <dynamics damping="0.1" friction="0.0" />
+  </joint>
+
+  <joint name="ankle_pitch_l" type="revolute">
+    <origin xyz="0.004026 0.025698 -0.362979" rpy="0 0 0" />
+    <parent link="lower_knee_L_1" />
+    <child link="ankle_L_1" />
+    <axis xyz="1.0 0.0 0.0" />
+    <limit effort="100.0" velocity="5.0" lower="-1.0" upper="1.0" />
+    <dynamics damping="0.1" friction="0.0" />
+  </joint>
+
+  <joint name="ankle_pitch_r" type="revolute">
+    <origin xyz="-0.015197 0.0239 -0.362807" rpy="0 0 0" />
+    <parent link="lower_knee_R_1" />
+    <child link="ankle_R_1" />
+    <axis xyz="1.0 0.0 0.0" />
+    <limit effort="100.0" velocity="5.0" lower="-1.0" upper="1.0" />
+    <dynamics damping="0.1" friction="0.0" />
+  </joint>
+
+  <joint name="ankle_roll_l" type="revolute">
+    <origin xyz="-0.027965 0.038725 0.000137" rpy="0 0 0" />
+    <parent link="ankle_L_1" />
+    <child link="feet_L_1" />
+    <axis xyz="0.0 -1.0 0.0" />
+    <limit effort="100.0" velocity="5.0" lower="-0.5" upper="0.5" />
+    <dynamics damping="0.1" friction="0.0" />
+  </joint>
+
+  <joint name="ankle_roll_r" type="revolute">
+    <origin xyz="0.023748 0.04172 -0.000679" rpy="0 0 0" />
+    <parent link="ankle_R_1" />
+    <child link="feet_R_1" />
+    <axis xyz="0.0 -1.0 0.0" />
+    <limit effort="100.0" velocity="5.0" lower="-0.5" upper="0.5" />
+    <dynamics damping="0.1" friction="0.0" />
+  </joint>
+
+  <link name="torso_pitch_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.01" />
+      <inertia ixx="0.0001" iyy="0.0001" izz="0.0001" ixy="0.0" iyz="0.0" ixz="0.0" />
+    </inertial>
+  </link>
+
+  <joint name="torso_pitch" type="revolute">
+    <origin xyz="0.0 0.0 0.883471" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="torso_pitch_link" />
+    <axis xyz="0.0 1.0 0.0" />
+    <limit effort="100.0" velocity="5.0" lower="-1.57" upper="1.57" />
+    <dynamics damping="0.1" friction="0.0" />
+  </joint>
+
+  <link name="torso_roll_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.01" />
+      <inertia ixx="0.0001" iyy="0.0001" izz="0.0001" ixy="0.0" iyz="0.0" ixz="0.0" />
+    </inertial>
+  </link>
+
+  <joint name="torso_roll" type="revolute">
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+    <parent link="torso_pitch_link" />
+    <child link="torso_roll_link" />
+    <axis xyz="1.0 0.0 0.0" />
+    <limit effort="100.0" velocity="5.0" lower="-1.57" upper="1.57" />
+    <dynamics damping="0.1" friction="0.0" />
+  </joint>
+
+  <joint name="torso_yaw" type="revolute">
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+    <parent link="torso_roll_link" />
+    <child link="Torso_1" />
+    <axis xyz="-0.0 -0.0 1.0" />
+    <limit effort="100.0" velocity="5.0" lower="-1.57" upper="1.57" />
+    <dynamics damping="0.1" friction="0.0" />
+  </joint>
+
+  <joint name="elbow_pitch_l" type="revolute">
+    <origin xyz="0.04735 0.001308 -0.124669" rpy="0 0 0" />
+    <parent link="bicep_L_1" />
+    <child link="wrist_L_1" />
+    <axis xyz="-0.984371 -0.029347 -0.173646" />
+    <limit effort="100.0" velocity="5.0" lower="-1.57" upper="1.57" />
+    <dynamics damping="0.1" friction="0.0" />
+  </joint>
+
+  <joint name="elbow_pitch_r" type="revolute">
+    <origin xyz="-0.047255 -0.002881 -0.124679" rpy="0 0 0" />
+    <parent link="bicep_R_1" />
+    <child link="wrist_R_1" />
+    <axis xyz="-0.980548 -0.092247 0.173253" />
+    <limit effort="100.0" velocity="5.0" lower="-1.57" upper="1.57" />
+    <dynamics damping="0.1" friction="0.0" />
+  </joint>
+
+  <joint name="shoulder_pitch_l" type="revolute">
+    <origin xyz="0.142972 0.003567 0.324503" rpy="0 0 0" />
+    <parent link="Torso_1" />
+    <child link="shoulder_pitch_L_1" />
+    <axis xyz="0.999681 0.025268 0.0" />
+    <limit upper="3.141593" lower="-3.141593" effort="100" velocity="100" />
+    <dynamics damping="0.1" friction="0.0" />
+  </joint>
+
+  <joint name="shoulder_roll_l" type="revolute">
+    <origin xyz="0.075975 -0.017836 0.0" rpy="0 0 0" />
+    <parent link="shoulder_pitch_L_1" />
+    <child link="shoulder_roll_L_1" />
+    <axis xyz="0.025268 -0.999681 -0.0" />
+    <limit upper="2.792527" lower="0.0" effort="100" velocity="100" />
+    <dynamics damping="0.1" friction="0.0" />
+  </joint>
+
+  <joint name="elbow_yaw_l" type="revolute">
+    <origin xyz="0.018194 0.024718 -0.106693" rpy="0 0 0" />
+    <parent link="shoulder_roll_L_1" />
+    <child link="bicep_L_1" />
+    <axis xyz="0.173593 0.004388 -0.984808" />
+    <limit upper="3.141593" lower="-3.141593" effort="100" velocity="100" />
+    <dynamics damping="0.1" friction="0.0" />
+  </joint>
+
+  <joint name="shoulder_pitch_r" type="revolute">
+    <origin xyz="-0.142971 -0.003614 0.324503" rpy="0 0 0" />
+    <parent link="Torso_1" />
+    <child link="shoulder_pitch_R_1" />
+    <axis xyz="0.999681 0.025268 -0.0" />
+    <limit upper="3.141593" lower="-3.141593" effort="100" velocity="100" />
+    <dynamics damping="0.1" friction="0.0" />
+  </joint>
+
+  <joint name="shoulder_roll_r" type="revolute">
+    <origin xyz="-0.074977 -0.021651 0.0" rpy="0 0 0" />
+    <parent link="shoulder_pitch_R_1" />
+    <child link="shoulder_roll_R_1" />
+    <axis xyz="0.025268 -0.999681 -0.0" />
+    <limit upper="0.174533" lower="-2.879793" effort="100" velocity="100" />
+    <dynamics damping="0.1" friction="0.0" />
+  </joint>
+
+  <joint name="elbow_yaw_r" type="revolute">
+    <origin xyz="-0.019419 0.023767 -0.106693" rpy="0 0 0" />
+    <parent link="shoulder_roll_R_1" />
+    <child link="bicep_R_1" />
+    <axis xyz="-0.173593 -0.004388 -0.984808" />
+    <limit upper="3.141593" lower="-3.141593" effort="100" velocity="100" />
+    <dynamics damping="0.1" friction="0.0" />
+  </joint>
+
+  <xacro:angad_ros2_control name="GazeboSimSystem" />
+
+</robot>

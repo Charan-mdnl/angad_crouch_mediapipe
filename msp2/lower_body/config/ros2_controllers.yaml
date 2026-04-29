@@ -1,0 +1,30 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100
+
+    lower_body_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+lower_body_controller:
+  ros__parameters:
+    joints:
+      - hip_pitch_l
+      - hip_pitch_r
+      - thigh_roll_l
+      - thigh_roll_r
+      - thigh_yaw_l
+      - thigh_yaw_r
+      - knee_pitch_l
+      - knee_pitch_r
+      - ankle_pitch_l
+      - ankle_pitch_r
+      - ankle_roll_l
+      - ankle_roll_r
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity

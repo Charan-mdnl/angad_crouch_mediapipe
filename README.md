@@ -74,12 +74,18 @@ angad_crouch_mediapipe/
 ├── XP_robot_walking.xml       # MuJoCo MJCF physics model for the Angad robot
 ├── requirements.txt           # Python dependencies
 ├── README.md                  # This documentation
-└── meshes/                    # 22 STL files defining the visual & collision geometry
+├── meshes/                    # 22 STL files defining the visual & collision geometry
+└── msp2/                      # ROS 2 & MoveIt package for advanced upper-body collision avoidance and pre-planned poses (Namaste/Handshake)
 ```
 
 ---
 
 ## 🧠 Technical Details
+
+### Advanced MoveIt Integration (`msp2`)
+While the pure Python `mediapipe_to_robot.py` scripts provide ultra-fast 1000Hz direct-to-MuJoCo physics teleoperation, this repository also includes a full ROS 2 package (`msp2/`). 
+
+The `msp2` package utilizes **MoveIt** to perform complex upper-body trajectory planning, self-collision avoidance, and precise keyframe generation for complex poses (like the Namaste and Handshake gestures).
 
 ### The Teleoperation Controller
 - Runs a dual-thread architecture: Thread 1 grabs webcam frames and runs ML inference at ~30Hz. Thread 2 steps the MuJoCo physics engine at 1000Hz.

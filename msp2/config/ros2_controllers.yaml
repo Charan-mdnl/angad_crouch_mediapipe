@@ -1,0 +1,77 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 1000  # Hz
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    joint_group_position_controller:
+      type: position_controllers/JointGroupPositionController
+
+    joint_trajectory_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+joint_group_position_controller:
+  ros__parameters:
+    joints:
+      - hip_pitch_l
+      - hip_pitch_r
+      - thigh_roll_l
+      - thigh_roll_r
+      - thigh_yaw_l
+      - thigh_yaw_r
+      - knee_pitch_l
+      - knee_pitch_r
+      - ankle_pitch_l
+      - ankle_pitch_r
+      - ankle_roll_l
+      - ankle_roll_r
+      - torso_pitch
+      - torso_roll
+      - torso_yaw
+      - shoulder_pitch_l
+      - shoulder_roll_l
+      - elbow_yaw_l
+      - elbow_pitch_l
+      - shoulder_pitch_r
+      - shoulder_roll_r
+      - elbow_yaw_r
+      - elbow_pitch_r
+
+joint_trajectory_controller:
+  ros__parameters:
+    joints:
+      - hip_pitch_l
+      - hip_pitch_r
+      - thigh_roll_l
+      - thigh_roll_r
+      - thigh_yaw_l
+      - thigh_yaw_r
+      - knee_pitch_l
+      - knee_pitch_r
+      - ankle_pitch_l
+      - ankle_pitch_r
+      - ankle_roll_l
+      - ankle_roll_r
+      - torso_pitch
+      - torso_roll
+      - torso_yaw
+      - shoulder_pitch_l
+      - shoulder_roll_l
+      - elbow_yaw_l
+      - elbow_pitch_l
+      - shoulder_pitch_r
+      - shoulder_roll_r
+      - elbow_yaw_r
+      - elbow_pitch_r
+
+    command_interfaces:
+      - position
+
+    state_interfaces:
+      - position
+      - velocity
+
+    allow_partial_joints_goal: true
+    open_loop_control: true
+    allow_integration_in_goal_trajectories: true

@@ -1,19 +1,18 @@
-# Angad Humanoid — Real-Time MediaPipe Teleoperation in Deep Crouch
+# Angad Humanoid — Real-Time MediaPipe Teleoperation
 
 <p align="center">
-  <b>Live webcam-based upper-body teleoperation combined with a mathematically verified 12cm deep crouch pose.</b>
+  <b>Live webcam-based upper-body teleoperation for the Angad humanoid robot.</b>
 </p>
 
 ---
 
 ## 🤖 What Is This?
 
-This repository contains a full, real-time control pipeline for the **Angad humanoid robot** (65 kg, 21-DOF). It combines two advanced robotic control techniques:
+This repository focuses on **Vision-based Teleoperation** for the Angad humanoid robot (65 kg, 21-DOF). 
 
-1. **Vision-based Teleoperation:** Uses a webcam and Google's MediaPipe Pose Landmarker to track a human operator's upper body in 3D space, translating human joint angles into robot actuator targets.
-2. **Kinematically Stable Deep Crouch:** The lower body of the robot is rigidly locked into a mathematically optimized 12cm deep crouch pose. This pose utilizes a 6-DOF Inverse Kinematics solver to safely handle the robot's unique 15-degree oblique hip-pitch axis, preventing the lateral drift that usually causes the robot to fall over.
+It uses a webcam and Google's MediaPipe Pose Landmarker to track a human operator's upper body in 3D space in real-time. It accurately translates human joint angles (shoulders, elbows, wrists) into robot actuator targets, allowing the robot to mirror your movements instantly.
 
-By combining these, the robot achieves an ultra-stable center of mass (COM) while the upper body dynamically mirrors the human operator!
+*Note: As a bonus, this repository also includes a stabilized "Deep Crouch" version of the teleoperation script, where the robot holds a mathematically verified 12cm crouch while mirroring your arms.*
 
 ---
 
@@ -44,8 +43,12 @@ pip install -r requirements.txt
 
 ### 2. Execution
 
-Run the main Python script:
+**To run the main standing teleoperation script:**
+```bash
+python3 mediapipe_to_robot.py
+```
 
+**To run the deep-crouch teleoperation script:**
 ```bash
 python3 angad_mediapipe_crouch.py
 ```
@@ -65,30 +68,18 @@ python3 angad_mediapipe_crouch.py
 
 ```
 angad_crouch_mediapipe/
-├── angad_mediapipe_crouch.py  # Main script — runs the webcam, MediaPipe, and MuJoCo viewer
+├── mediapipe_to_robot.py      # MAIN SCRIPT: Standing MediaPipe teleoperation
+├── angad_mediapipe_crouch.py  # ALTERNATE SCRIPT: MediaPipe teleoperation while in deep crouch
 ├── pose_landmarker_lite.task  # Pre-trained Google MediaPipe Lite model file
 ├── XP_robot_walking.xml       # MuJoCo MJCF physics model for the Angad robot
 ├── requirements.txt           # Python dependencies
 ├── README.md                  # This documentation
 └── meshes/                    # 22 STL files defining the visual & collision geometry
-    ├── pelvis.stl
-    ├── torso.stl
-    ├── hip_pitch_l.stl
-    ├── ... (and other limbs)
 ```
 
 ---
 
 ## 🧠 Technical Details
-
-### The Deep Crouch (Base Pose)
-The lower body is locked into the following verified joint configuration to lower the COM by 12cm:
-- `hip_pitch`: `-0.5543 rad`
-- `hip_roll`: `±0.0425 rad` (compensates for 15° oblique axis swing)
-- `thigh_yaw`: `±0.0032 rad`
-- `knee`: `-1.1537 rad` (66° bend)
-- `ankle_pitch`: `-0.6024 rad`
-- `ankle_roll`: `0.0 rad`
 
 ### The Teleoperation Controller
 - Runs a dual-thread architecture: Thread 1 grabs webcam frames and runs ML inference at ~30Hz. Thread 2 steps the MuJoCo physics engine at 1000Hz.

@@ -82,10 +82,10 @@ angad_crouch_mediapipe/
 
 ## 🧠 Technical Details
 
-### Advanced MoveIt Integration (`msp2`)
-While the pure Python `mediapipe_to_robot.py` scripts provide ultra-fast 1000Hz direct-to-MuJoCo physics teleoperation, this repository also includes a full ROS 2 package (`msp2/`). 
+### Advanced MoveIt Integration (`msp2`) — *For Future Work*
+While the pure Python `mediapipe_to_robot.py` scripts provide ultra-fast 1000Hz direct-to-MuJoCo physics teleoperation without needing ROS, this repository also includes a full ROS 2 package (`msp2/`). 
 
-The `msp2` package utilizes **MoveIt** to perform complex upper-body trajectory planning, self-collision avoidance, and precise keyframe generation for complex poses (like the Namaste and Handshake gestures).
+**Note: This MoveIt package is NOT used by the current running MediaPipe scripts.** It is included for future advanced work, such as performing complex upper-body trajectory planning, self-collision avoidance, and precise keyframe generation within a ROS 2 framework.
 
 ### The Teleoperation Controller
 - Runs a dual-thread architecture: Thread 1 grabs webcam frames and runs ML inference at ~30Hz. Thread 2 steps the MuJoCo physics engine at 1000Hz.

@@ -1,0 +1,4 @@
+mujoco>=3.0.0
+numpy>=1.23.0
+opencv-python>=4.6.0
+mediapipe>=0.10.0
